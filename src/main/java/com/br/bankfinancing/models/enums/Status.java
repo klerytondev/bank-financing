@@ -1,4 +1,4 @@
-package com.br.bankfinancing.models;
+package com.br.bankfinancing.models.enums;
 
 public enum Status {
 	

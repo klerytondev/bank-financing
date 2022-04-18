@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.br.bankfinancing.models.enums.Status;
+
 @Entity
 @Table(name = "TB_CLIENT")
 public class ClientModel implements Serializable {
