@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.br.bankfinancing.models.enums.Status;
+import com.br.bankfinancing.models.enums.StatusClient;
 
 @Entity
 @Table(name = "TB_CLIENT")
@@ -26,13 +26,13 @@ public class ClientModel implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String email;
 	@Column(nullable = false)
-	private Status status;
+	private StatusClient status;
 	@Column(nullable = false)
 	private Date dateCreation;
 	@Column(nullable = false)
 	private Date updateDate;
 
-	public ClientModel(String name, String email, Status status, Date dateCreation, Date updateDate) {
+	public ClientModel(String name, String email, StatusClient status, Date dateCreation, Date updateDate) {
 		this.name = name;
 		this.email = email;
 		this.status = status;
@@ -60,11 +60,11 @@ public class ClientModel implements Serializable {
 		this.email = email;
 	}
 
-	public Status getStatus() {
+	public StatusClient getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(StatusClient status) {
 		this.status = status;
 	}
 

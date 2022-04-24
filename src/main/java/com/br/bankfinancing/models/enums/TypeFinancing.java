@@ -1,7 +1,7 @@
 package com.br.bankfinancing.models.enums;
 
-public enum Status {
+public enum TypeFinancing {
 	
-	ATIVO, INATIVO;
+	CARRO, MOTO, CASA;
 
 }
