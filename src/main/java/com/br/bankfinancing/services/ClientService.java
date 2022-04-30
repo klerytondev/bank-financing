@@ -34,4 +34,9 @@ public class ClientService {
 		return null;
 	}
 
+	public Object findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

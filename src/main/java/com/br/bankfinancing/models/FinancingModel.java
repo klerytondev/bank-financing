@@ -38,7 +38,6 @@ public class FinancingModel implements Serializable {
 	
 	public FinancingModel(double valorTotal, int parcelas, double renda, int meses, TypeFinancing typeFinancing,
 			StatusFinancing statusFinancing, double inputValueFinancing) {
-		super();
 		this.valorTotal = valorTotal;
 		this.parcelas = parcelas;
 		this.renda = renda;
