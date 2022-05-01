@@ -1,6 +1,7 @@
 package com.br.bankfinancing.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,30 +21,36 @@ import com.br.bankfinancing.requestDto.ClientRequestDto;
 import com.br.bankfinancing.services.ClientService;
 
 import br.com.kleryton.bankingsystem.models.AccountModel;
+import br.com.kleryton.bankingsystem.requestDto.AccountRequestDto;
 import io.swagger.annotations.ApiOperation;
 
-
 @RestController
-@RequestMapping(value="/v1/bankin-financing")
+@RequestMapping(value = "/v1/bankin-financing")
 //Otimiza o acesso a API
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "*")
 public class ClientController {
-	
+
 	@Autowired
 	ClientService clientService;
-	
+
 	// SaveClient
 	@PostMapping("/client/add")
 	public ResponseEntity<Object> saveClient(@RequestBody @Valid ClientRequestDto clienteRequestDto) {
 		ClientModel clientModel = clientService.create(clienteRequestDto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(clientModel);
 	}
-	
+
 	// Read All
-		@GetMapping("/client/all")
-		public ResponseEntity<List<ClientModel>> getAllAccountModel() {
-			return ResponseEntity.status(HttpStatus.OK).body(clientService.findAll());
-		}
-	
+	@GetMapping("/client/all")
+	public ResponseEntity<List<ClientModel>> getAllAccountModel() {
+		return ResponseEntity.status(HttpStatus.OK).body(clientService.findAll());
+	}
+
+	// Read One by Id
+	@GetMapping("/client/{id}")
+	public ResponseEntity<Object> getOneAccountModel(@PathVariable(value = "id") Long id) {
+		Optional<ClientModel> ClientModelOptional = clientService.findById(id);
+		return ResponseEntity.status(HttpStatus.OK).body(new ClientRequestDto(ClientModelOptional.get()));
+	}
 
 }

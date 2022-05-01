@@ -34,17 +34,17 @@ public class ClientService {
 		return clientModel;
 	}
 
-	public Object findAll() {
+	public List<ClientModel> findAll() {
 		// Verifica se existe clientes no banco, caso contrario retorna exception
-				if (clientRepository.findAll().isEmpty()) {
-					throw new ObjetoNaoEncontradoException("Clientes not found!");
-				}
-				// Salva clientes existentes no banco de dados em uma lista de clientes
-				List<ClientModel> clientModelsList = new ArrayList<>();
-				for (ClientModel clientModel : clientRepository.findAll()) {
-					clientModelsList.add(clientModel);
-				}
-				return clientModelsList;
+		if (clientRepository.findAll().isEmpty()) {
+			throw new ObjetoNaoEncontradoException("Clientes not found!");
+		}
+		// Salva clientes existentes no banco de dados em uma lista de clientes
+		List<ClientModel> clientModelsList = new ArrayList<>();
+		for (ClientModel clientModel : clientRepository.findAll()) {
+			clientModelsList.add(clientModel);
+		}
+		return clientModelsList;
 	}
 
 	// Coverte um request DTO em client
