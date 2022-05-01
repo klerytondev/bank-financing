@@ -2,6 +2,7 @@ package com.br.bankfinancing.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -45,6 +46,17 @@ public class ClientService {
 			clientModelsList.add(clientModel);
 		}
 		return clientModelsList;
+	}
+
+	// Read One by Id
+	@Transactional
+	public Optional<ClientModel> findById(Long id) {
+
+		// Verifica se a account existe no banco
+		Optional<ClientModel> accountOptional = clientRepository.findById(id);
+		accountOptional.orElseThrow(() -> new ObjetoNaoEncontradoException("client not found."));
+
+		return clientRepository.findById(id);
 	}
 
 	// Coverte um request DTO em client

@@ -20,10 +20,6 @@ import com.br.bankfinancing.models.ClientModel;
 import com.br.bankfinancing.requestDto.ClientRequestDto;
 import com.br.bankfinancing.services.ClientService;
 
-import br.com.kleryton.bankingsystem.models.AccountModel;
-import br.com.kleryton.bankingsystem.requestDto.AccountRequestDto;
-import io.swagger.annotations.ApiOperation;
-
 @RestController
 @RequestMapping(value = "/v1/bankin-financing")
 //Otimiza o acesso a API
