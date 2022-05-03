@@ -1,5 +1,7 @@
 package com.br.bankfinancing.requestDto;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PositiveOrZero;
 
@@ -21,8 +23,10 @@ public class FinancingRequestDto {
 	@NotEmpty(message = "{campo.meses.obrigatorio}")
 	private int meses;
 
+	@Enumerated(EnumType.STRING)
 	private TypeFinancing typeFinancing;
-
+	
+	@Enumerated(EnumType.STRING)
 	private StatusFinancing statusFinancing;
 
 	@PositiveOrZero(message = "{campo.positiveorzero.postivo}")

@@ -2,6 +2,8 @@ package com.br.bankfinancing.requestDto;
 
 import java.util.Date;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -21,6 +23,7 @@ public class ClientRequestDto {
 	@NotEmpty(message = "{campo.email.obrigatorio}")
 	private String email;
 
+	@Enumerated(EnumType.STRING)
 	@NotEmpty(message = "{campo.email.obrigatorio}")
 	private StatusClient status;
 
