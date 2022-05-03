@@ -33,7 +33,6 @@ public class ClientRequestDto {
 	private Date updateDate;
 
 	public ClientRequestDto(ClientModel clientModel) {
-		super();
 		this.name = clientModel.getName();
 		this.email = clientModel.getEmail();
 		this.status = clientModel.getStatus();
