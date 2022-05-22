@@ -2,12 +2,17 @@ package com.br.bankfinancing.models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.br.bankfinancing.models.enums.StatusClient;
@@ -31,6 +36,10 @@ public class ClientModel implements Serializable {
 	private Date dateCreation;
 	@Column(nullable = false)
 	private Date updateDate;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "client_id", foreignKey = @ForeignKey(name = "fk_financing"))
+	private Set<FinancingModel> financingModels;
 
 	public ClientModel(String name, String email, StatusClient status, Date dateCreation, Date updateDate) {
 		this.name = name;
@@ -82,6 +91,13 @@ public class ClientModel implements Serializable {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+	
+	public Set<FinancingModel> getFinancingModels() {
+		return financingModels;
+	}
+	public void setFinancingModels(FinancingModel financingModels) {
+		this.financingModels.add(financingModels);
 	}
 
 }

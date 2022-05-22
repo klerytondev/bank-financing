@@ -72,7 +72,7 @@ public class ClientService {
 			}
 			// Só é possivel excluir um cliente se não existir nenhuma financiamentoassociado ao cliente
 			// Verifica se existe uma financiamento associado a uma account
-			else if (!(accountModelOptional.get().getCard() == null || accountModelOptional.get().getCard().isEmpty())) {
+			else if (!(clientModelOptional.get().getCard() == null || accountModelOptional.get().getCard().isEmpty())) {
 				throw new IntegridadeDeDadosException("The account has cards. Unable to delete!");
 			}
 
