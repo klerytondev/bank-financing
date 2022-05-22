@@ -16,6 +16,7 @@ import com.br.bankfinancing.services.exceptions.ConflictDeDadosException;
 import com.br.bankfinancing.services.exceptions.ObjetoNaoEncontradoException;
 
 import br.com.kleryton.bankingsystem.models.AccountModel;
+import br.com.kleryton.bankingsystem.services.exceptions.IntegridadeDeDadosException;
 
 public class ClientService {
 
@@ -58,6 +59,26 @@ public class ClientService {
 
 		return clientRepository.findById(id);
 	}
+	
+	// Delete by id
+		@Transactional
+		public String delete(Long id) {
+
+			Optional<ClientModel> clientModelOptional = clientRepository.findById(id);
+
+			// Verifica se cliente existe
+			if (!clientModelOptional.isPresent()) {
+				throw new ObjetoNaoEncontradoException("Client not found.");
+			}
+			// Só é possivel excluir um cliente se não existir nenhuma financiamentoassociado ao cliente
+			// Verifica se existe uma financiamento associado a uma account
+			else if (!(accountModelOptional.get().getCard() == null || accountModelOptional.get().getCard().isEmpty())) {
+				throw new IntegridadeDeDadosException("The account has cards. Unable to delete!");
+			}
+
+			accountRepository.deleteById(id);
+			return "Account deleted successfully.";
+		}
 
 	// Coverte um request DTO em client
 	private ClientModel convertDtoToModel(ClientRequestDto clienteRequestDto) {
