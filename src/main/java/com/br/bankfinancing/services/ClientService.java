@@ -57,26 +57,28 @@ public class ClientService {
 
 		return clientRepository.findById(id);
 	}
-	
+
 	// Delete by id
-		@Transactional
-		public String delete(Long id) {
+	@Transactional
+	public String delete(Long id) {
 
-			Optional<ClientModel> clientModelOptional = clientRepository.findById(id);
+		Optional<ClientModel> clientModelOptional = clientRepository.findById(id);
 
-			// Verifica se cliente existe
-			if (!clientModelOptional.isPresent()) {
-				throw new ObjetoNaoEncontradoException("Client not found.");
-			}
-			// Só é possivel excluir um cliente se não existir nenhuma financiamentoassociado ao cliente
-			// Verifica se existe uma financiamento associado a uma account
-			else if (!(clientModelOptional.get().getFinancingModels() == null || clientModelOptional.get().getFinancingModels().isEmpty())) {
-				throw new IntegridadeDeDadosException("The client has financing. Unable to delete!");
-			}
-
-			accountRepository.deleteById(id);
-			return "Account deleted successfully.";
+		// Verifica se cliente existe
+		if (!clientModelOptional.isPresent()) {
+			throw new ObjetoNaoEncontradoException("Client not found.");
 		}
+		// Só é possivel excluir um cliente se não existir nenhuma
+		// financiamentoassociado ao cliente
+		// Verifica se existe uma financiamento associado a uma account
+		else if (!(clientModelOptional.get().getFinancingModels() == null
+				|| clientModelOptional.get().getFinancingModels().isEmpty())) {
+			throw new IntegridadeDeDadosException("The client has financing. Unable to delete!");
+		}
+
+		clientRepository.deleteById(id);
+		return "Client deleted successfully.";
+	}
 
 	// Coverte um request DTO em client
 	private ClientModel convertDtoToModel(ClientRequestDto clienteRequestDto) {
