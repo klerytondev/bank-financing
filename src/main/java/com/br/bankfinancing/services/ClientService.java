@@ -13,10 +13,8 @@ import com.br.bankfinancing.models.ClientModel;
 import com.br.bankfinancing.repositories.ClientRepository;
 import com.br.bankfinancing.requestDto.ClientRequestDto;
 import com.br.bankfinancing.services.exceptions.ConflictDeDadosException;
+import com.br.bankfinancing.services.exceptions.IntegridadeDeDadosException;
 import com.br.bankfinancing.services.exceptions.ObjetoNaoEncontradoException;
-
-import br.com.kleryton.bankingsystem.models.AccountModel;
-import br.com.kleryton.bankingsystem.services.exceptions.IntegridadeDeDadosException;
 
 public class ClientService {
 
@@ -72,8 +70,8 @@ public class ClientService {
 			}
 			// Só é possivel excluir um cliente se não existir nenhuma financiamentoassociado ao cliente
 			// Verifica se existe uma financiamento associado a uma account
-			else if (!(clientModelOptional.get().getCard() == null || accountModelOptional.get().getCard().isEmpty())) {
-				throw new IntegridadeDeDadosException("The account has cards. Unable to delete!");
+			else if (!(clientModelOptional.get().getFinancingModels() == null || clientModelOptional.get().getFinancingModels().isEmpty())) {
+				throw new IntegridadeDeDadosException("The client has financing. Unable to delete!");
 			}
 
 			accountRepository.deleteById(id);
