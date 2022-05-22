@@ -65,10 +65,10 @@ public class ClientController {
 	
 	// Update by id
 		@PutMapping("/client/update")
-		public ResponseEntity<ClienteResponseDto> updateAccountModel(@RequestParam("id") Long id,
-				@RequestBody @Valid AccountRequestDto accountRequestDto) {
-			AccountResponseDto accountResponseDto = accountService.updateAcoount(id, accountRequestDto);
-			return ResponseEntity.status(HttpStatus.OK).body(accountResponseDto);
+		public ResponseEntity<ClienteResponseDto> updateClientModel(@RequestParam("id") Long id,
+				@RequestBody @Valid ClientRequestDto clientRequestDto) {
+			ClienteResponseDto clienteResponseDto = clientService.updateAcoount(id, clientRequestDto);
+			return ResponseEntity.status(HttpStatus.OK).body(clienteResponseDto);
 		}
 
 }
