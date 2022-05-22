@@ -13,13 +13,20 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.bankfinancing.models.ClientModel;
 import com.br.bankfinancing.requestDto.ClientRequestDto;
+import com.br.bankfinancing.responseDto.ClienteResponseDto;
 import com.br.bankfinancing.services.ClientService;
+
+import br.com.kleryton.bankingsystem.requestDto.AccountRequestDto;
+import br.com.kleryton.bankingsystem.responseDto.AccountResponseDto;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping(value = "/v1/bankin-financing")
@@ -55,5 +62,13 @@ public class ClientController {
 	public ResponseEntity<Object> deleteAccountModel(@PathVariable Long id) {
 		return ResponseEntity.status(HttpStatus.OK).body(clientService.delete(id));
 	}
+	
+	// Update by id
+		@PutMapping("/client/update")
+		public ResponseEntity<ClienteResponseDto> updateAccountModel(@RequestParam("id") Long id,
+				@RequestBody @Valid AccountRequestDto accountRequestDto) {
+			AccountResponseDto accountResponseDto = accountService.updateAcoount(id, accountRequestDto);
+			return ResponseEntity.status(HttpStatus.OK).body(accountResponseDto);
+		}
 
 }
