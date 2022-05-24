@@ -1,6 +1,7 @@
 package com.br.bankfinancing.models;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
@@ -33,9 +34,9 @@ public class ClientModel implements Serializable {
 	@Column(nullable = false)
 	private StatusClient status;
 	@Column(nullable = false)
-	private Date dateCreation;
-	@Column(nullable = false)
-	private Date updateDate;
+	private LocalDateTime dateCreation;
+	@Column
+	private LocalDateTime updateDate;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "client_id", foreignKey = @ForeignKey(name = "fk_financing"))
@@ -44,7 +45,7 @@ public class ClientModel implements Serializable {
 	public ClientModel() {
 	}
 
-	public ClientModel(String name, String email, StatusClient status, Date dateCreation, Date updateDate) {
+	public ClientModel(String name, String email, StatusClient status, LocalDateTime dateCreation, LocalDateTime updateDate) {
 		this.name = name;
 		this.email = email;
 		this.status = status;
@@ -80,20 +81,20 @@ public class ClientModel implements Serializable {
 		this.status = status;
 	}
 
-	public Date getDateCreation() {
+	public LocalDateTime getDateCreation() {
 		return dateCreation;
 	}
 
-	public void setDateCreation(Date dateCreation) {
+	public void setDateCreation(LocalDateTime dateCreation) {
 		this.dateCreation = dateCreation;
 	}
 
-	public Date getUpdateDate() {
+	public LocalDateTime getUpdateDate() {
 		return updateDate;
 	}
 
 	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
+		this.updateDate = LocalDateTime.now();
 	}
 	
 	public Set<FinancingModel> getFinancingModels() {

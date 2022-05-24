@@ -86,7 +86,7 @@ public class ClientService {
 
 	// Update by id
 	@Transactional
-	public ClientResponseDto updateAcoount(Long id, ClientRequestDto clientRequestDto) {
+	public ClientResponseDto updateClient(Long id, ClientRequestDto clientRequestDto) {
 
 		// Busca no banco de dados se existe cliente com o id passado
 		Optional<ClientModel> clienteMpdelOptional = clientRepository.findById(id);
