@@ -41,7 +41,8 @@ public class ClientModel implements Serializable {
 	@JoinColumn(name = "client_id", foreignKey = @ForeignKey(name = "fk_financing"))
 	private Set<FinancingModel> financingModels;
 	
-	
+	public ClientModel() {
+	}
 
 	public ClientModel(String name, String email, StatusClient status, Date dateCreation, Date updateDate) {
 		this.name = name;
