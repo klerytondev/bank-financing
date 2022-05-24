@@ -1,6 +1,6 @@
 package com.br.bankfinancing.requestDto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -29,11 +29,11 @@ public class ClientRequestDto {
 
 	@NotEmpty(message = "{campo.name.obrigatorio}")
 	@Pattern(regexp = "\\d{2}/\\d{2}/\\d{4}", message = "{campo.data.invalido}")
-	private Date dateCreation;
+	private LocalDateTime dateCreation;
 
 	@NotEmpty(message = "{campo.name.obrigatorio}")
 	@Pattern(regexp = "\\d{2}/\\d{2}/\\d{4}", message = "{campo.data.invalido}")
-	private Date updateDate;
+	private LocalDateTime updateDate;
 
 	public ClientRequestDto(ClientModel clientModel) {
 		this.name = clientModel.getName();
@@ -67,19 +67,19 @@ public class ClientRequestDto {
 		this.status = status;
 	}
 
-	public Date getDateCreation() {
+	public LocalDateTime getDateCreation() {
 		return dateCreation;
 	}
 
-	public void setDateCreation(Date dateCreation) {
+	public void setDateCreation(LocalDateTime dateCreation) {
 		this.dateCreation = dateCreation;
 	}
 
-	public Date getUpdateDate() {
+	public LocalDateTime getUpdateDate() {
 		return updateDate;
 	}
 
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 
