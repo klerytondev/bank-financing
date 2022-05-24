@@ -37,15 +37,16 @@ public class ClientModel implements Serializable {
 	private LocalDateTime dateCreation;
 	@Column
 	private LocalDateTime updateDate;
-	
+
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "client_id", foreignKey = @ForeignKey(name = "fk_financing"))
 	private Set<FinancingModel> financingModels;
-	
+
 	public ClientModel() {
 	}
 
-	public ClientModel(String name, String email, StatusClient status, LocalDateTime dateCreation, LocalDateTime updateDate) {
+	public ClientModel(String name, String email, StatusClient status, LocalDateTime dateCreation,
+			LocalDateTime updateDate) {
 		this.name = name;
 		this.email = email;
 		this.status = status;
@@ -96,10 +97,11 @@ public class ClientModel implements Serializable {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = LocalDateTime.now();
 	}
-	
+
 	public Set<FinancingModel> getFinancingModels() {
 		return financingModels;
 	}
+
 	public void setFinancingModels(FinancingModel financingModels) {
 		this.financingModels.add(financingModels);
 	}

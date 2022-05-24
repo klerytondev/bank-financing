@@ -1,6 +1,6 @@
 package com.br.bankfinancing.responseDto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.br.bankfinancing.models.ClientModel;
@@ -13,7 +13,7 @@ public class ClientResponseDto {
 	private String name;
 	private String email;
 	private StatusClient statusClient;
-	private Date opdateData;
+	private LocalDateTime updateData;
 	private Set<FinancingModel> financingModels;
 
 	public ClientResponseDto() {
@@ -24,7 +24,7 @@ public class ClientResponseDto {
 		this.name = clientModel.getName();
 		this.email = clientModel.getEmail();
 		this.statusClient = clientModel.getStatus();
-		this.opdateData = clientModel.getUpdateDate();
+		this.updateData = clientModel.getUpdateDate();
 		this.financingModels = clientModel.getFinancingModels();
 	}
 
@@ -44,8 +44,8 @@ public class ClientResponseDto {
 		return statusClient;
 	}
 
-	public Date getOpdateData() {
-		return opdateData;
+	public LocalDateTime getOpdateData() {
+		return updateData;
 	}
 
 	public Set<FinancingModel> getFinancingModels() {
