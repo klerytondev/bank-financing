@@ -1,5 +1,6 @@
 package com.br.bankfinancing.services;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,9 +13,12 @@ import org.springframework.dao.DataIntegrityViolationException;
 import com.br.bankfinancing.models.ClientModel;
 import com.br.bankfinancing.repositories.ClientRepository;
 import com.br.bankfinancing.requestDto.ClientRequestDto;
+import com.br.bankfinancing.responseDto.ClienteResponseDto;
 import com.br.bankfinancing.services.exceptions.ConflictDeDadosException;
 import com.br.bankfinancing.services.exceptions.IntegridadeDeDadosException;
 import com.br.bankfinancing.services.exceptions.ObjetoNaoEncontradoException;
+
+import br.com.kleryton.bankingsystem.responseDto.AccountResponseDto;
 
 public class ClientService {
 
@@ -79,6 +83,35 @@ public class ClientService {
 		clientRepository.deleteById(id);
 		return "Client deleted successfully.";
 	}
+	
+	// Update by id
+		@Transactional
+		public ClienteResponseDto updateAcoount(Long id, ClientRequestDto clientRequestDto) {
+
+			// Busca no banco de dados se existe cliente com o id passado
+			Optional<ClientModel> clienteMpdelOptional = clientRepository.findById(id);
+			clienteMpdelOptional.orElseThrow(() -> new ObjetoNaoEncontradoException("Client not found."));
+
+			// Atualiza os campos do cliente existentes
+
+			clienteMpdelOptional.get().setName(clientRequestDto.getName());
+			clienteMpdelOptional.get().setEmail(clientRequestDto.getEmail());
+			clienteMpdelOptional.get().setStatus(clientRequestDto.getStatus());
+			clienteMpdelOptional.get().setUpdateDate(LocalDateTime.now());
+
+			// Verifica se accountCode ou RegisteId já está em uso no banco
+			try {
+				clientRepository.save(clienteMpdelOptional.get());
+			} catch (Exception e) {
+				throw new DataIntegrityViolationException("Email is already in use!");
+			}
+			ClientModel clientModel = new ClientModel();
+
+			ClienteResponseDto clienteResponseDto = new ClienteResponseDto(accountModelOptional.get());
+
+			return accountResponseDto;
+
+		}
 
 	// Coverte um request DTO em client
 	private ClientModel convertDtoToModel(ClientRequestDto clienteRequestDto) {
