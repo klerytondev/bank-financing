@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.br.bankfinancing.models.ClientModel;
 import com.br.bankfinancing.requestDto.ClientRequestDto;
-import com.br.bankfinancing.responseDto.ClienteResponseDto;
+import com.br.bankfinancing.responseDto.ClientResponseDto;
 import com.br.bankfinancing.services.ClientService;
 
 import br.com.kleryton.bankingsystem.requestDto.AccountRequestDto;
@@ -65,9 +65,9 @@ public class ClientController {
 	
 	// Update by id
 		@PutMapping("/client/update")
-		public ResponseEntity<ClienteResponseDto> updateClientModel(@RequestParam("id") Long id,
+		public ResponseEntity<ClientResponseDto> updateClientModel(@RequestParam("id") Long id,
 				@RequestBody @Valid ClientRequestDto clientRequestDto) {
-			ClienteResponseDto clienteResponseDto = clientService.updateAcoount(id, clientRequestDto);
+			ClientResponseDto clienteResponseDto = clientService.updateAcoount(id, clientRequestDto);
 			return ResponseEntity.status(HttpStatus.OK).body(clienteResponseDto);
 		}
 

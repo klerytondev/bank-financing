@@ -7,7 +7,7 @@ import com.br.bankfinancing.models.ClientModel;
 import com.br.bankfinancing.models.FinancingModel;
 import com.br.bankfinancing.models.enums.StatusClient;
 
-public class ClienteResponseDto {
+public class ClientResponseDto {
 
 	private Long id;
 	private String name;
@@ -16,10 +16,10 @@ public class ClienteResponseDto {
 	private Date opdateData;
 	private Set<FinancingModel> financingModels;
 
-	public ClienteResponseDto() {
+	public ClientResponseDto() {
 	}
 
-	public ClienteResponseDto(ClientModel clientModel) {
+	public ClientResponseDto(ClientModel clientModel) {
 		this.id = clientModel.getId();
 		this.name = clientModel.getName();
 		this.email = clientModel.getEmail();
