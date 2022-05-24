@@ -67,7 +67,7 @@ public class ClientController {
 		@PutMapping("/client/update")
 		public ResponseEntity<ClientResponseDto> updateClientModel(@RequestParam("id") Long id,
 				@RequestBody @Valid ClientRequestDto clientRequestDto) {
-			ClientResponseDto clienteResponseDto = clientService.updateAcoount(id, clientRequestDto);
+			ClientResponseDto clienteResponseDto = clientService.updateClient(id, clientRequestDto);
 			return ResponseEntity.status(HttpStatus.OK).body(clienteResponseDto);
 		}
 

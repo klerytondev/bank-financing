@@ -18,8 +18,6 @@ import com.br.bankfinancing.services.exceptions.ConflictDeDadosException;
 import com.br.bankfinancing.services.exceptions.IntegridadeDeDadosException;
 import com.br.bankfinancing.services.exceptions.ObjetoNaoEncontradoException;
 
-import br.com.kleryton.bankingsystem.responseDto.AccountResponseDto;
-
 public class ClientService {
 
 	@Autowired

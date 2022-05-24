@@ -94,7 +94,7 @@ public class ClientModel implements Serializable {
 		return updateDate;
 	}
 
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = LocalDateTime.now();
 	}
 
